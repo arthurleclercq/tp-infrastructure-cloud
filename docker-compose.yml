@@ -1,0 +1,24 @@
+version: "3.3"
+
+services:
+  webapp:
+    build: .
+    ports:
+      - "5001:5000"
+    volumes: 
+      - ./shared_volume:/dev_env
+    container_name: webapp
+
+  bdd:
+    image: redis:alpine
+    container_name: bdd
+
+
+
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.57.0/24
